@@ -1,0 +1,3 @@
+#!/bin/bash
+#stolen, but makes sense.
+pgrep $@ > /dev/null || ($@ &)

@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+EXP=$( [ -n "$3" ] && echo "$3" || echo "5000" )
+
+sleep $1 && notify-send $2 --expire-time $EXP &

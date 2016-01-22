@@ -1,0 +1,2 @@
+#!/bin/bash
+python2 -i ~/t/bin/iwork.py
