@@ -29,9 +29,8 @@ e0 = 8.854e-12
 def readfile(fname):
     if re.match(r".*\.h5",fname):
         return h5.File(fname);
-    with open(fname,'r') as f:
-        d=pickle.load(f);
-    return d;
+    return np.load(fname,allow_pickle=True);
+
 def savefile(fname, data):
     with open(fname,'w') as f:
         pickle.dump(data,f,2);

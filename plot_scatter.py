@@ -19,7 +19,7 @@ import numpy as np;
 import sys;
 def process_file(filename=None,d=None):
     if filename:
-        data = np.fromtxt(filename)
+        data = np.loadtxt(filename)
     else:
         lines = '\n'.join(sys.stdin.readlines());
         data = np.genfromtxt(lines)
