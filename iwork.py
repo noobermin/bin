@@ -27,7 +27,8 @@ G=6.67408e-11
 quad = lambda a,b,c: ( (-float(b)+np.sqrt(float(b)**2-4*float(a)*float(c)))/(2*a), (-float(b)-np.sqrt(float(b)**2-4*float(a)*float(c)))/(2*a));
 e0  = 8.854e-12
 c=299792458
-
+e=1.602176208e-19
+m_e=9.10938356e-31
 mu0 = 4*np.pi*1e-7 
 def readfile(fname):
     if re.match(r".*\.h5",fname):
