@@ -30,6 +30,8 @@ c=299792458
 e=1.602176208e-19
 m_e=9.10938356e-31
 mu0 = 4*np.pi*1e-7 
+r_e = e**2/m_e/c**2/(4*np.pi*e0)
+a0 = lambda I,l=.8e-4: np.sqrt(r_e/c/m_e/(c**2)*2/np.pi * I * l**2)
 def readfile(fname):
     if re.match(r".*\.h5",fname):
         return h5.File(fname);
