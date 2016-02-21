@@ -12,17 +12,20 @@ Options:
   --ylabel=YLABEL          Print this y label.
   --logx                   Plot log of x.
   --logy                   Plot lot of y.
+  --line -l                Plot instead of scatter.
 '''
 from docopt import docopt;
 import matplotlib.pyplot as plt;
 import numpy as np;
 import sys;
+from StringIO import StringIO
 def process_file(filename=None,d=None):
     if filename:
         data = np.loadtxt(filename)
     else:
         lines = '\n'.join(sys.stdin.readlines());
-        data = np.genfromtxt(lines)
+        s = StringIO(lines);
+        data = np.loadtxt(s);
     return data[:,0],data[:,1] 
 
 if __name__ == '__main__':
@@ -38,6 +41,9 @@ if __name__ == '__main__':
         plt.ylabel(opts['--ylabel']);
     if opts['--title']:
         plt.title(opts['--title']);
-    plt.scatter(x,y);
+    if opts['--line']:
+        plt.plot(x,y);
+    else:    
+        plt.scatter(x,y);
     plt.show();
 
