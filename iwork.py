@@ -27,11 +27,17 @@ G=6.67408e-11
 quad = lambda a,b,c: ( (-float(b)+np.sqrt(float(b)**2-4*float(a)*float(c)))/(2*a), (-float(b)-np.sqrt(float(b)**2-4*float(a)*float(c)))/(2*a));
 e0  = 8.854e-12
 c=299792458
+h=6.626070040e-34
 e=1.602176208e-19
+hc=h*c*1e9/e;
+alpha = e**2/(4*np.pi*e0)/(h*c/(2*np.pi));
 m_e=9.10938356e-31
 mu0 = 4*np.pi*1e-7 
 r_e = e**2/m_e/c**2/(4*np.pi*e0)
+kb = 8.6173324e-5
 a0 = lambda I,l=.8e-4: np.sqrt(r_e/c/m_e/(c**2)*2/np.pi * I * l**2)
+
+debye = lambda T_eV, ne: np.sqrt(T_eV/(hc*1e-7)/(2*alpha)/ne)
 def readfile(fname):
     if re.match(r".*\.h5",fname):
         return h5.File(fname);
