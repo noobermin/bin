@@ -25,7 +25,7 @@ arctand = lambda th: mkretdeg(np.arctan,th);
 g=9.8
 G=6.67408e-11
 quad = lambda a,b,c: ( (-float(b)+np.sqrt(float(b)**2-4*float(a)*float(c)))/(2*a), (-float(b)-np.sqrt(float(b)**2-4*float(a)*float(c)))/(2*a));
-e0  = 8.854e-12
+e0  = 8.8541878176e-12
 c=299792458
 h=6.626070040e-34
 e=1.602176208e-19
@@ -39,7 +39,7 @@ a0 = lambda I,l=.8e-4: np.sqrt(r_e/c/m_e/(c**2)*2/np.pi * I * l**2)
 
 debye = lambda T_eV, ne: np.sqrt(T_eV/(hc*1e-7)/(2*alpha)/ne)
 nc = lambda l,gm=1,m=m_e,q=e: e0*m*(2*np.pi*c/l)**2/q**2/gm*1e-6 
-
+ItoE = lambda I: np.sqrt(2*I*1e4/(e0*c));
 def readfile(fname):
     if re.match(r".*\.h5",fname):
         return h5.File(fname);
