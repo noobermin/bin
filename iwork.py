@@ -27,6 +27,7 @@ G=6.67408e-11
 quad = lambda a,b,c: ( (-float(b)+np.sqrt(float(b)**2-4*float(a)*float(c)))/(2*a), (-float(b)-np.sqrt(float(b)**2-4*float(a)*float(c)))/(2*a));
 e0  = 8.8541878176e-12
 c=299792458
+c_cgs = c*1e2
 h=6.626070040e-34
 e=1.602176208e-19
 hc=h*c*1e9/e;
