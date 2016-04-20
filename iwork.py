@@ -33,13 +33,15 @@ e=1.602176208e-19
 hc=h*c*1e9/e;
 alpha = e**2/(4*np.pi*e0)/(h*c/(2*np.pi));
 m_e=9.10938356e-31
+m_e_cgs= m_e *1e3
 mu0 = 4*np.pi*1e-7 
 r_e = e**2/m_e/c**2/(4*np.pi*e0)
 kb = 8.6173324e-5
 a0 = lambda I,l=.8e-4: np.sqrt(r_e/c/m_e/(c**2)*2/np.pi * I * l**2)
 
 debye = lambda T_eV, ne: np.sqrt(T_eV/(hc*1e-7)/(2*alpha)/ne)
-nc = lambda l,gm=1,m=m_e,q=e: e0*m*(2*np.pi*c/l)**2/q**2/gm*1e-6 
+nc = lambda l,gm=1,m=m_e,q=e: e0*m*(2*np.pi*c/l)**2/q**2/gm*1e-6
+wp = lambda ne,q=e,m=m_e: np.sqrt(ne*e**2/m/e0)
 ItoE = lambda I: np.sqrt(2*I*1e4/(e0*c));
 
 zr = lambda lm,w0: w0**2*np.pi/lm
