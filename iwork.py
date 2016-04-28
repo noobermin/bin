@@ -37,6 +37,7 @@ m_e_cgs= m_e *1e3
 mu0 = 4*np.pi*1e-7 
 r_e = e**2/m_e/c**2/(4*np.pi*e0)
 kb = 8.6173324e-5
+kb_si = 1.38064852e-23
 a0 = lambda I,l=.8e-4: np.sqrt(r_e/c/m_e/(c**2)*2/np.pi * I * l**2)
 
 debye = lambda T_eV, ne: np.sqrt(T_eV/(hc*1e-7)/(2*alpha)/ne)
