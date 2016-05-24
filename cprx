@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+USAGE=" usage: cprx <regex> <outdir>"
+[ -z "$1" ] && [ -z "$2" ] && echo "$USAGE" && exit 0
+cp -v $( ls | grep "$1" ) "$2"
