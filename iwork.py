@@ -45,6 +45,28 @@ nc = lambda l,gm=1,m=m_e,q=e: e0*m*(2*np.pi*c/l)**2/q**2/gm*1e-6
 wp = lambda ne,q=e,m=m_e: np.sqrt(ne*e**2/m/e0)
 ItoE = lambda I: np.sqrt(2*I*1e4/(e0*c));
 EtoI = lambda E: e0*c*E**2/2.0*1e-4
+def laserE(E_0, T, w,dim="3D"):
+    '''
+    Get total energy in a Gaussian Laser.
+    
+
+    Parameters and Keywords
+    -----------------------
+    E_0   -- Peak E field.
+    T     -- FWHM of the pulse.
+    w     -- Spotsize.
+    dim   -- Spatial dimension, either "2D", or "3D" or None for "3D"
+
+    Returns laser energy.
+    '''
+
+    if dim == "2D":
+        return w * np.sqrt(np.pi/2) * (c*e0*E_0**2)/2 * T*1e-2;
+    elif not dim or dim == "3D":
+        return w**2 * (np.pi/2) * (c*e0*E_0**2)/2 * T;
+    else:
+        raise ValueError("dim is not None, '2D' or '3D'");
+
 
 zr = lambda lm,w0: w0**2*np.pi/lm
 
