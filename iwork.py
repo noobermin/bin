@@ -49,6 +49,9 @@ zr = lambda lm,w0: w0**2*np.pi/lm
 
 waist = lambda z,lm,w0: w0*np.sqrt(1+(z/zr(lm,w0))**2)
 spit=lambda n: "{:e}".format(n);
+
+gm  = lambda b: 1.0/np.sqrt(1-b**2);
+igm = lambda gm: np.sqrt(1.0-1.0/gm**2)
 def readfile(fname):
     if re.match(r".*\.h5",fname):
         return h5.File(fname);
