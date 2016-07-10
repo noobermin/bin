@@ -33,6 +33,7 @@ e=1.602176208e-19
 hc=h*c*1e9/e;
 alpha = e**2/(4*np.pi*e0)/(h*c/(2*np.pi));
 m_e=9.10938356e-31
+m_p=1.672621898e-29
 m_e_cgs= m_e *1e3
 mu0 = 4*np.pi*1e-7 
 r_e = e**2/m_e/c**2/(4*np.pi*e0)
