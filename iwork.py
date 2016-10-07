@@ -13,6 +13,11 @@ def importcwd():
     sys.path.insert(0,'.');
 import re
 import h5py as h5
+try:
+    import pys
+except ImportError:
+    pass;
+
 mkdeg = lambda f,th: f(float(th)/180*np.pi);
 sind = lambda th: mkdeg(np.sin,th);
 cosd = lambda th: mkdeg(np.cos,th);
