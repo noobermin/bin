@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+[ !  -n "$(which rlwrap)" ]  && echo "rled: no rlwrap in found"  >&2  && exit -1
+rlwrap ed $@
+
