@@ -1,4 +1,4 @@
 #!/bin/bash
 
-amixer set Master 2dB+
+$(pgrep pulseaudio > /dev/null) && pactl set-sink-volume 0 +5% || amixer set Master 2dB+
 

@@ -7,9 +7,10 @@ else
 fi;
 PLACE=4
 RATIO=$(echo $(cat /sys/class/power_supply/BAT1/energy_now) / $(cat /sys/class/power_supply/BAT1/energy_full))
-P=$(printf %.${PLACE}f $(echo $RATIO | bc -l))
+P=$(printf %.${PLACE}f $(echo "$RATIO" | bc -l))
 round(){
     printf %.${PLACE}f $(echo "$1 + ( $([ "$2" -gt 4 ] && echo 1 || echo 0) * 10^-$(expr $PLACE + 1) )" | bc -l)
 }
 FR=$(echo $P | sed 's/^\(.*\)\([0-9]\) *$/\1 \2/')
-echo -e "$IND $RATIO     $(eval round $FR)"
+echo -e "$IND"
+echo "$RATIO     $(eval round $FR)"
