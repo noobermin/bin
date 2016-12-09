@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-emacsclient -cna emacs $@
+emacsclient-emacs-25 -cna emacs-25 $@

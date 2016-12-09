@@ -46,7 +46,7 @@ kb = 8.6173324e-5
 kb_si = 1.38064852e-23
 a0 = lambda I,l=.8e-4: np.sqrt(r_e/c/m_e/(c**2)*2/np.pi * I * l**2)
 
-debye = lambda T_eV, ne: np.sqrt(T_eV/(hc*1e-7)/(2*alpha)/ne)
+debye = lambda T_eV, ne_invcc: np.sqrt(T_eV/(hc*1e-7)/(2*alpha)/ne)
 nc = lambda l,gm=1,m=m_e,q=e: e0*m*(2*np.pi*c/l)**2/q**2/gm*1e-6
 wp = lambda ne,q=e,m=m_e: np.sqrt(ne*e**2/m/e0)
 ItoE = lambda I: np.sqrt(2*I*1e4/(e0*c));
