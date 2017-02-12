@@ -55,7 +55,7 @@ round(){
 }
 FR=$(echo $P | sed 's/^\(.*\)\([0-9]\) *$/\1 \2/')
 OUT=
-[ -n "$SRC" ] && OUT="$(echo -e $IND)"
-[ -n "$FRAC" ] && OUT="$OUT $RATIO"
-[ -n "$PERCENT" ] && OUT="$OUT $(eval round $FR)"
+[ -n "$SRC" ] && OUT="$(echo -e $IND) "
+[ -n "$FRAC" ] && OUT="$OUT$RATIO "
+[ -n "$PERCENT" ] && OUT="$OUT$(eval round $FR)"
 echo "$OUT";
