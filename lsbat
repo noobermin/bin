@@ -1,4 +1,46 @@
 #!/bin/bash
+USAGE="
+Usage:
+   lsbat [-p]
+
+Options:
+   -p         Print percentage.
+   -f         Print fraction.
+   -s         Print source.
+"
+
+PERCENT=
+SRC=
+FRAC=
+while getopts 'phsf' opt; do
+      case $opt in
+          h)
+              echo "$USAGE"
+              exit 0
+              ;;
+          p)
+              PERCENT=1;
+              ;;
+          s)
+              SRC=1
+              ;;
+          f)  FRAC=1
+              ;;
+          \?)
+              echo "Invalid option: $OPTARG">&2
+              exit 1
+              ;;
+#          :)
+#              echo "Option -$OPTARG requires an argument.">&2
+#              exit 1
+#              ;;
+      esac
+done
+if [ ! -n "$SRC" ] && [ ! -n "$PERCENT" ] && [ ! -n "$FRAC" ]; then
+    SRC=1;
+    PERCENT=1;
+    FRAC=1;
+fi;
 STATE=$(cat /sys/class/power_supply/BAT1/status)
 if [  $STATE == "Charging" ]; then
     IND="\xf0\x9f\x94\x8c"
@@ -12,5 +54,8 @@ round(){
     printf %.${PLACE}f $(echo "$1 + ( $([ "$2" -gt 4 ] && echo 1 || echo 0) * 10^-$(expr $PLACE + 1) )" | bc -l)
 }
 FR=$(echo $P | sed 's/^\(.*\)\([0-9]\) *$/\1 \2/')
-echo -e "$IND"
-echo "$RATIO     $(eval round $FR)"
+OUT=
+[ -n "$SRC" ] && OUT="$(echo -e $IND)"
+[ -n "$FRAC" ] && OUT="$OUT $RATIO"
+[ -n "$PERCENT" ] && OUT="$OUT $(eval round $FR)"
+echo "$OUT";
