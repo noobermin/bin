@@ -1,0 +1,3 @@
+#!/bin/bash
+
+mosh --ssh="ssh $HOMESSHOPTS" "$HOMEUSER"@"$HOMEHOST"

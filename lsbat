@@ -1,12 +1,12 @@
 #!/bin/bash
 USAGE="
 Usage:
-   lsbat [-p]
+    lsbat [options]
 
 Options:
-   -p         Print percentage.
-   -f         Print fraction.
-   -s         Print source.
+    -p         Print percentage.
+    -f         Print fraction.
+    -s         Print source.
 "
 
 PERCENT=
@@ -47,7 +47,7 @@ if [  $STATE == "Charging" ]; then
 else
     IND="\xf0\x9f\x94\x8b"
 fi;
-PLACE=4
+PLACE=3
 RATIO=$(echo $(cat /sys/class/power_supply/BAT1/energy_now) / $(cat /sys/class/power_supply/BAT1/energy_full))
 P=$(printf %.${PLACE}f $(echo "$RATIO" | bc -l))
 round(){

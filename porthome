@@ -1,0 +1,39 @@
+#!/bin/bash
+USAGE="
+Usage:
+    lsbat [options]
+
+Options:
+     -p        Set port [default: 5901]
+     -H        Set host port so it's different from remote post [default: 5900]
+"
+PORT=5901
+HOSTPORT=
+while getopts ':p:H:' opt; do
+    case $opt in
+        h)
+            echo "$USAGE" && exit 0
+            ;;
+        p)
+            PORT=$OPTARG;
+            ;;
+        H)
+            HOSTPORT=$OPTARG;
+            ;;
+
+        :)
+            echo "Option -$OPTARG requires an argument." >&2
+            exit 1
+            ;;
+    esac
+done
+shift "$((OPTIND-1))"
+if [ ! -n "$HOSTPORT" ]; then
+    if [ 5901 -eq "$PORT" ]; then
+        HOSTPORT=5900;
+    else 
+        HOSTPORT=$PORT;
+    fi
+fi  
+
+ssh -L "$PORT":localhost:"$HOSTPORT" -N $HOMESSHOPTS $HOMEUSER@$HOMEHOST
