@@ -9,7 +9,7 @@ Options:
 "
 PORT=5901
 HOSTPORT=
-while getopts ':p:H:' opt; do
+while getopts ':p:H:h' opt; do
     case $opt in
         h)
             echo "$USAGE" && exit 0

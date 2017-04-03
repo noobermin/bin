@@ -41,14 +41,17 @@ if [ ! -n "$SRC" ] && [ ! -n "$PERCENT" ] && [ ! -n "$FRAC" ]; then
     PERCENT=1;
     FRAC=1;
 fi;
-STATE=$(cat /sys/class/power_supply/BAT1/status)
+BATTPATH="${BATTPATH:-/sys/class/power_supply/BAT1}"
+STATE=$(cat $BATTPATH/status)
 if [  $STATE == "Charging" ]; then
     IND="\xf0\x9f\x94\x8c"
 else
     IND="\xf0\x9f\x94\x8b"
 fi;
 PLACE=3
-RATIO=$(echo $(cat /sys/class/power_supply/BAT1/energy_now) / $(cat /sys/class/power_supply/BAT1/energy_full))
+BATTPATH="${BATTPATH:-/sys/class/power_supply/BAT1}"
+BATTQUANTITY=${BATTQUANTITY:-energy}
+RATIO=$(echo $(cat "$BATTPATH"/${BATTQUANTITY}_now) / $(cat "$BATTPATH"/${BATTQUANTITY}_full))
 P=$(printf %.${PLACE}f $(echo "$RATIO" | bc -l))
 round(){
     printf %.${PLACE}f $(echo "$1 + ( $([ "$2" -gt 4 ] && echo 1 || echo 0) * 10^-$(expr $PLACE + 1) )" | bc -l)
