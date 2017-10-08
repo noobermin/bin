@@ -6,7 +6,6 @@ import numpy as np;
 import math as m;
 import matplotlib.pyplot as plt;
 from matplotlib.colors import LogNorm;
-import cPickle as pickle;
 def importcwd():
     import sys;
     sys.path.insert(0,'.');
