@@ -49,6 +49,7 @@ nc = lambda l,gm=1,m=m_e,q=e: e0*m*(2*np.pi*c/l)**2/q**2/gm*1e-6
 wp = lambda ne_invcc,q=e,m=m_e: np.sqrt(ne_invcc*1e6*e**2/m/e0)
 ItoE = lambda I: np.sqrt(2*I*1e4/(e0*c));
 EtoI = lambda E: e0*c*E**2/2.0*1e-4
+wilks = lambda I,l=0.8e-4,m=m_e: (np.sqrt(1 + 0.5 * a0(I,l)**2) - 1.0)*m*c**2/e;
 def laserE(E_0, T, w,dim="3D"):
     '''
     Get total energy in a Gaussian Laser.
