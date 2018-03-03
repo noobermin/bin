@@ -71,8 +71,8 @@ def laserE(E_0, T, w,dim="3D"):
         return w**2 * (np.pi/2) * (c*e0*E_0**2)/2 * T;
     else:
         raise ValueError("dim is not None, '2D' or '3D'");
-
-
+hbar  = h/(2*np.pi);
+abohr = hbar/m_e/c/alpha;
 zr = lambda lm,w0: w0**2*np.pi/lm
 
 waist = lambda z,lm,w0: w0*np.sqrt(1+(z/zr(lm,w0))**2)
