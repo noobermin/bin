@@ -13,6 +13,8 @@ import re
 import h5py as h5
 try:
     import pys
+    from lspreader import read as p4read;
+    from lspplot.pc import pc;
 except ImportError:
     pass;
 

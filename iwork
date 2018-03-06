@@ -1,3 +1,3 @@
 #!/bin/bash
 #export ETS_TOOLKIT=qt4
-python -i ~/t/bin/iwork.py
+exec python -i ~/t/bin/iwork.py
