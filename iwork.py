@@ -35,6 +35,7 @@ c=299792458
 c_cgs = c*1e2
 h=6.626070040e-34
 e=1.602176208e-19
+e_cgs = 4.80320425e-10
 hc=h*c*1e9/e;
 alpha = e**2/(4*np.pi*e0)/(h*c/(2*np.pi));
 m_e=9.10938356e-31
@@ -75,13 +76,31 @@ def laserE(E_0, T, w,dim="3D"):
         raise ValueError("dim is not None, '2D' or '3D'");
 hbar  = h/(2*np.pi);
 abohr = hbar/m_e/c/alpha;
-zr = lambda lm,w0: w0**2*np.pi/lm
 
 waist = lambda z,lm,w0: w0*np.sqrt(1+(z/zr(lm,w0))**2)
 spit=lambda n: "{:e}".format(n);
 
 gm  = lambda b: 1.0/np.sqrt(1-b**2);
 igm = lambda gm: np.sqrt(1.0-1.0/gm**2)
+
+def w0fnum(l,fnum=3.7): return 2*l*fnum/np.pi;
+def fnumw0(l,w0=2.2e-4): return np.pi*w0/2/l;
+def w0_(s0=2.2e-4):
+    return s0/np.sqrt(2*np.log(2));
+def zr_(l=0.8e-4,s0=2.2e-4):
+    return np.pi*(s0**2/(2*np.log(2)))/l;
+def w_(z_cm,l=0.8e-4,s0=2.2e-4):
+    return w0_(s0)*np.sqrt(1 + (z_cm/zr_(l=l,s0=s0))**2);
+def Elaserw(r_cm,z_cm,l=0.8e-4,s0=2.2e-4):
+    w0 = w0_(s0);
+    k = 2*np.pi/l;
+    w = w_(z_cm,l=l,s0=s0);
+    zr = zr_(l=l,s0=s0);
+    R = z_cm*(1 + (zr/z_cm)**2);
+    phi = np.arctan(z_cm/zr);
+    return  w0/w*np.exp(-(r_cm/w)**2);#*np.sin(k*z_cm + 0.5*k*r_cm**2/R - phi);
+
+
 def readfile(fname):
     if re.match(r".*\.h5",fname):
         return h5.File(fname);

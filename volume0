@@ -1,4 +1,6 @@
 #!/bin/bash
 
-amixer set Master toggle
+$(pgrep pulseaudio > /dev/null) &&\
+    pactl set-sink-mute @DEFAULT_SINK@ toggle ||\
+    amixer set Master toggle
 

@@ -48,7 +48,7 @@ if [  $STATE == "Charging" ]; then
 else
     IND="\xf0\x9f\x94\x8b"
 fi;
-PLACE=3
+PLACE=6
 BATTPATH="${BATTPATH:-/sys/class/power_supply/BAT1}"
 BATTQUANTITY=${BATTQUANTITY:-energy}
 RATIO=$(echo $(cat "$BATTPATH"/${BATTQUANTITY}_now) / $(cat "$BATTPATH"/${BATTQUANTITY}_full))
