@@ -1,0 +1,8 @@
+#!/bin/bash
+if ( [ ! -n "$1" ] || [ ! -n "$2" ]; ) || 
+    ( [ "$1" != "down" ]  && [ "$1" != "up" ]; ); then 
+    echo "usage: sync-dir (up|down) <dir>"; 
+    exit; 
+fi
+source syncrmtdir.sh
+syncdir $@
